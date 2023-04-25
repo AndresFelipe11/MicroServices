@@ -6,9 +6,9 @@ spring:
   application:
     name: plaza-service
   datasource:
-    url: jdbc:mysql://localhost:3306/reto
+    url: jdbc:mysql://localhost:3306/plazoleta
     username: root
-    password: 1701712480
+    password: 123456
 
   jpa:
     hibernate:
