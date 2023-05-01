@@ -1,4 +1,20 @@
 package com.pragma.plaza_comida_usuarios.infrastructure.configuration;
 
-public class FeignClientInterceptorImp {
+
+import feign.RequestInterceptor;
+import feign.RequestTemplate;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+public class FeignClientInterceptorImp implements RequestInterceptor{
+    private static final String AUTHORIZATION_HEADER = "Authorization";
+
+    public static String getBearerTokenHeader() {
+        return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getHeader("Authorization");
+    }
+
+    @Override
+    public void apply(RequestTemplate template) {
+        template.header(AUTHORIZATION_HEADER, getBearerTokenHeader());
+    }
 }
