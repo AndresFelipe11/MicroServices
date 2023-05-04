@@ -17,6 +17,9 @@ import com.pragma.plaza_comida.domain.api.IOrderServicePort;
 import com.pragma.plaza_comida.domain.api.IRestaurantEmployeeServicePort;
 import com.pragma.plaza_comida.domain.api.IRestaurantServicePort;
 import com.pragma.plaza_comida.domain.model.*;
+import com.pragma.plaza_comida.infrastructure.configuration.FeignClientInterceptorImp;
+import com.pragma.plaza_comida.infrastructure.exeption.DishNotFoundInRestaurantException;
+import com.pragma.plaza_comida.infrastructure.input.rest.Client.IUserClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +28,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -73,7 +77,7 @@ public class OrderHandler implements IOrderHandler {
                             }
 
                             return orderDishHandler.createOrderDish(orderDish, orderModelResponse.getId());
-                        }).toList();
+                        }).collect(Collectors.toList());
 
         return orderResponseMapper.toResponse(orderModelResponse, orderDishResponseDtoList);
     }
@@ -111,7 +115,7 @@ public class OrderHandler implements IOrderHandler {
 
         List<OrderDishModel> orderDishModelList = orderDishServicePort.getAllOrderDishByOrder(orderId);
 
-        List<OrderDishResponseDto> orderDishResponseDtoList = orderDishModelList.stream().map(orderDishResponseMapper::toResponse).toList();
+        List<OrderDishResponseDto> orderDishResponseDtoList = orderDishModelList.stream().map(orderDishResponseMapper::toResponse).collect(Collectors.toList());
 
         return orderResponseMapper.toResponse(orderModelResponse, orderDishResponseDtoList);
     }

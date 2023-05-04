@@ -17,13 +17,17 @@ public class RestaurantUseCase implements IRestaurantServicePort {
 
     @Override
     public RestaurantModel saveRestaurant(RestaurantModel restaurantModel) {
-        restaurantPersistencePort.saveRestaurant(restaurantModel);
-        return restaurantModel;
+        return restaurantPersistencePort.saveRestaurant(restaurantModel);
     }
 
     @Override
     public RestaurantModel getRestaurant(Long restaurantId) {
         return restaurantPersistencePort.getRestaurant(restaurantId);
+    }
+
+    @Override
+    public List<RestaurantModel> getAllRestaurants(int pageN, int size) {
+        return restaurantPersistencePort.getAllRestaurants(pageN, size);
     }
 
     @Override

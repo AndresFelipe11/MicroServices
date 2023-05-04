@@ -1,8 +1,6 @@
 package com.pragma.plaza_comida.infrastructure.out.adapter;
 
-import lombok.RequiredArgsConstructor;
 
-import java.util.List;
 
 import com.pragma.plaza_comida.domain.model.RestaurantModel;
 import com.pragma.plaza_comida.domain.spi.IRestaurantPersistencePort;
@@ -11,6 +9,14 @@ import com.pragma.plaza_comida.infrastructure.exeption.RestaurantNotFoundExcepti
 import com.pragma.plaza_comida.infrastructure.out.entity.RestaurantEntity;
 import com.pragma.plaza_comida.infrastructure.out.mapper.IRestaurantEntityMapper;
 import com.pragma.plaza_comida.infrastructure.out.repository.IRestaurantRepository;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 public class RestaurantJpaAdapter implements IRestaurantPersistencePort {
@@ -31,12 +37,21 @@ public class RestaurantJpaAdapter implements IRestaurantPersistencePort {
     }
 
     @Override
-    public List<RestaurantModel> getAllRestaurants() {
-        List<RestaurantEntity> entityList = restaurantRepository.findAll();
+    public List<RestaurantModel> getAllRestaurants(int pageN, int size) {
+        Pageable pagingSort = PageRequest.of(pageN, size, Sort.by("name"));
+        Page<RestaurantEntity> page = restaurantRepository.findAll(pagingSort);
+        List<RestaurantEntity> restaurantEntityList = page.getContent();
 
-        if (entityList.isEmpty()) {
+        if (restaurantEntityList.isEmpty()) {
             throw new NoDataFoundException();
         }
-        return restaurantEntityMapper.toRestaurantModelList(entityList);
+
+        return restaurantEntityMapper.toRestaurantModelList(restaurantEntityList);
+    }
+
+    @Override
+    public List<RestaurantModel> getAllRestaurants() {
+        Iterable<RestaurantEntity> restaurantEntities = restaurantRepository.findAll();
+        return restaurantEntityMapper.toRestaurantModelList((List<RestaurantEntity>) restaurantEntities);
     }
 }

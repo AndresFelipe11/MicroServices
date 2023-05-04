@@ -1,5 +1,6 @@
 package com.pragma.plaza_comida.application.mapper.response;
 
+import com.pragma.plaza_comida.application.dto.response.AllRestaurantResponseDto;
 import com.pragma.plaza_comida.application.dto.response.RestaurantResponseDto;
 import com.pragma.plaza_comida.domain.model.RestaurantModel;
 import org.mapstruct.Mapper;
@@ -13,6 +14,6 @@ import java.util.List;
 public interface IRestaurantResponseMapper {
     RestaurantResponseDto toResponse(RestaurantModel restaurantModel);
 
-    List<RestaurantResponseDto> toResponseList(List<RestaurantModel> restaurantModels);
+    List<AllRestaurantResponseDto> toResponseList(List<RestaurantModel> restaurantModels);
 }
 

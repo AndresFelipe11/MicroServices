@@ -5,6 +5,8 @@ import com.pragma.plaza_comida.application.handler.IJwtHandler;
 import com.pragma.plaza_comida.application.mapper.request.IUserRequestMapper;
 import com.pragma.plaza_comida.domain.model.UserModel;
 import com.pragma.plaza_comida.infrastructure.input.rest.Client.IUserClient;
+import com.pragma.plaza_comida.infrastructure.out.entity.UserEntity;
+import com.pragma.plaza_comida.infrastructure.out.mapper.IUserEntityMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

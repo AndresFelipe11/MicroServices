@@ -1,5 +1,10 @@
 package com.pragma.plaza_comida.application.handler.impl;
 
+import com.pragma.plaza_comida.application.dto.request.ListPaginationRequest;
+import com.pragma.plaza_comida.application.dto.request.UserRequestDto;
+import com.pragma.plaza_comida.application.dto.response.AllRestaurantResponseDto;
+import com.pragma.plaza_comida.infrastructure.exeption.NoUserFoundException;
+import com.pragma.plaza_comida.infrastructure.input.rest.Client.IUserClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,14 +28,29 @@ public class RestaurantHandler implements IRestaurantHandler {
     private final IRestaurantRequestMapper restaurantRequestMapper;
     private final IRestaurantResponseMapper restaurantResponseMapper;
 
+    private final IUserClient userClient;
+
     @Override
-    public void saveRestaurant(RestaurantRequestDto restaurantRequestDto) {
+    public RestaurantResponseDto saveRestaurant(RestaurantRequestDto restaurantRequestDto) {
         RestaurantModel restaurantModel = restaurantRequestMapper.toRestaurant(restaurantRequestDto);
-        restaurantServicePort.saveRestaurant(restaurantModel);
+        UserRequestDto userRequestDto = userClient.getUserById(Long.valueOf(restaurantModel.getOwnerId())).getBody().getData();
+
+        if (userRequestDto == null) {
+            throw new NoUserFoundException();
+        }
+
+        restaurantModel.setOwnerId(String.valueOf(restaurantRequestDto.getOwnerId()));
+        RestaurantModel restaurant = restaurantServicePort.saveRestaurant(restaurantModel);
+        return restaurantResponseMapper.toResponse(restaurantServicePort.getRestaurant(restaurant.getId()));
     }
 
     @Override
-    public List<RestaurantResponseDto> getAllRestaurants() {
+    public List<AllRestaurantResponseDto> getAllRestaurants(ListPaginationRequest listPaginationRequest) {
+        return restaurantResponseMapper.toResponseList(restaurantServicePort.getAllRestaurants(listPaginationRequest.getPageN(), listPaginationRequest.getSize()));
+    }
+
+    @Override
+    public List<AllRestaurantResponseDto> getAllRestaurants() {
         return restaurantResponseMapper.toResponseList(restaurantServicePort.getAllRestaurants());
     }
 }
