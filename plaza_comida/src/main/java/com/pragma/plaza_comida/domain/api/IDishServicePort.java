@@ -12,4 +12,5 @@ public interface IDishServicePort {
     List<DishModel> getAllDishes();
 
     void updateDish(DishModel dishModel);
+    List<DishModel> getAllDishesByRestaurant(int pageN, int size, Long restaurantId);
 }

@@ -5,11 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RestaurantResponseDto {
+public class AllRestaurantResponseDto {
     private String name;
-    private String address;
-    private Long ownerId;
-    private String phoneNumber;
     private String urlLogo;
-    private String nit;
 }
