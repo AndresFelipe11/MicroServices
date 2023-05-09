@@ -19,8 +19,8 @@ public class FactoryRestaurantDataTest {
     public static RestaurantModel getRestaurantModel() {
         RestaurantModel expectedRestaurant = new RestaurantModel();
 
-        expectedRestaurant.setName("Corral");
-        expectedRestaurant.setAddress("Calle 5");
+        expectedRestaurant.setName("qbano");
+        expectedRestaurant.setAddress("Carrera 7");
         expectedRestaurant.setOwnerId(4L);
         expectedRestaurant.setPhoneNumber("+10000");
         expectedRestaurant.setUrlLogo("logoUrl");
@@ -32,8 +32,8 @@ public class FactoryRestaurantDataTest {
     public static RestaurantRequestDto getRestaurantRequestDto() {
         RestaurantRequestDto restaurantRequestDto = new RestaurantRequestDto();
 
-        restaurantRequestDto.setName("Corral");
-        restaurantRequestDto.setAddress("Calle 5");
+        restaurantRequestDto.setName("qbano");
+        restaurantRequestDto.setAddress("Carrera 7");
         restaurantRequestDto.setOwnerId(4L);
         restaurantRequestDto.setPhoneNumber("+10000");
         restaurantRequestDto.setUrlLogo("logoUrl");
@@ -45,8 +45,8 @@ public class FactoryRestaurantDataTest {
     public static RestaurantResponseDto getRestaurantResponseDto() {
         RestaurantResponseDto restaurantResponseDto = new RestaurantResponseDto();
 
-        restaurantResponseDto.setName("Corral");
-        restaurantResponseDto.setAddress("Calle 5");
+        restaurantResponseDto.setName("qbano");
+        restaurantResponseDto.setAddress("Carrera 7");
         restaurantResponseDto.setOwnerId(4L);
         restaurantResponseDto.setPhoneNumber("+10000");
         restaurantResponseDto.setUrlLogo("logoUrl");
@@ -58,7 +58,7 @@ public class FactoryRestaurantDataTest {
     public static RestaurantRequestDto getRestaurantWithoutName() {
         RestaurantRequestDto restaurantRequestDto = new RestaurantRequestDto();
 
-        restaurantRequestDto.setAddress("Calle 5");
+        restaurantRequestDto.setAddress("Carrera 7");
         restaurantRequestDto.setOwnerId(4L);
         restaurantRequestDto.setPhoneNumber("+10000");
         restaurantRequestDto.setUrlLogo("logoUrl");
@@ -70,8 +70,8 @@ public class FactoryRestaurantDataTest {
     public static RestaurantRequestDto getRestaurantBadPhoneNumber() {
         RestaurantRequestDto restaurantRequestDto = new RestaurantRequestDto();
 
-        restaurantRequestDto.setName("Corral");
-        restaurantRequestDto.setAddress("Calle 5");
+        restaurantRequestDto.setName("qbano");
+        restaurantRequestDto.setAddress("Carrera 7");
         restaurantRequestDto.setOwnerId(4L);
         restaurantRequestDto.setPhoneNumber("Telefono");
         restaurantRequestDto.setUrlLogo("logoUrl");
@@ -84,7 +84,7 @@ public class FactoryRestaurantDataTest {
         RestaurantRequestDto restaurantRequestDto = new RestaurantRequestDto();
 
         restaurantRequestDto.setName("123546");
-        restaurantRequestDto.setAddress("Calle 5");
+        restaurantRequestDto.setAddress("Carrera 7");
         restaurantRequestDto.setOwnerId(4L);
         restaurantRequestDto.setPhoneNumber("+90000");
         restaurantRequestDto.setUrlLogo("logoUrl");

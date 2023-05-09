@@ -102,7 +102,7 @@ public class AuthenticationRestController {
             return new ResponseEntity<>(responseDto, HttpStatus.BAD_REQUEST);
         } catch (Exception exception) {
             responseDto.setError(true);
-            responseDto.setMessage("Error interno del servidor");
+            responseDto.setMessage("Error interno del servidor"+ exception);
             responseDto.setData(null);
             return new ResponseEntity<>(responseDto, HttpStatus.INTERNAL_SERVER_ERROR);
         }

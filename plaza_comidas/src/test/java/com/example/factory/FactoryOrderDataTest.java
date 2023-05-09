@@ -45,8 +45,8 @@ public class FactoryOrderDataTest {
         RestaurantModel expectedRestaurant = new RestaurantModel();
 
         expectedRestaurant.setId(1L);
-        expectedRestaurant.setName("Corral");
-        expectedRestaurant.setAddress("Calle 5");
+        expectedRestaurant.setName("qbano");
+        expectedRestaurant.setAddress("Carrera 7");
         expectedRestaurant.setOwnerId(4L);
         expectedRestaurant.setPhoneNumber("+10000");
         expectedRestaurant.setUrlLogo("logoUrl");
@@ -107,8 +107,8 @@ public class FactoryOrderDataTest {
     public static RestaurantResponseDto getRestaurantResponseDto() {
         RestaurantResponseDto restaurantResponseDto = new RestaurantResponseDto();
 
-        restaurantResponseDto.setName("Corral");
-        restaurantResponseDto.setAddress("Calle 5");
+        restaurantResponseDto.setName("qbano");
+        restaurantResponseDto.setAddress("Carrera 7");
         restaurantResponseDto.setOwnerId(4L);
         restaurantResponseDto.setPhoneNumber("+10000");
         restaurantResponseDto.setUrlLogo("logoUrl");
